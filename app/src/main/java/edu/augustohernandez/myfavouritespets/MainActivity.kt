@@ -2,42 +2,62 @@ package edu.augustohernandez.myfavouritespets
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.findNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
+import edu.augustohernandez.myfavouritespets.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var navView: NavigationView
-    private lateinit var navController: NavController
+
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        drawerLayout = findViewById(R.id.drawer_layout)
-        navView = findViewById(R.id.nav_view)
+        // Find the DrawerLayout and NavigationView
+        val drawerLayout = binding.drawerLayout
+        val navigationView = binding.navView
 
-        navController = findNavController(R.id.nav_host_fragment)
-        navView.setupWithNavController(navController)
+        /*En esta parte se obtiene una referencia de NavHostFragment
+         del fragmentContainer de esta actividad. La idea es que se pueda tener acceso
+         a su navController*/
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        // Setup ActionBar
+        //Se configura el AppBar para el DrawerLayout
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_list_fragment, R.id.nav_my_pets_fragment), drawerLayout)
+
+        // Set up the ActionBar with the NavigationDrawer
         setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, findViewById(R.id.toolbar),
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        /*Estos eventos configuran el Home como origen de
+        * navegación y la habilitación de regresar a home
+        * con el evento up por defecto, respectivamente*/
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        // Set up the NavigationView with the NavController
+        navigationView.setupWithNavController(navController)
+
+        /*Esta configuración permite el cierre automático del
+        * panel de NavigationDrawer cuando se navege hacia un
+        * destino.*/
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            binding.drawerLayout.closeDrawers()
+        }
     }
 
+
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(drawerLayout) || super.onSupportNavigateUp()
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

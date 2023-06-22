@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyFavouritesPets</string>
+    <string name="list_fragment_title">Pets list</string>
+    <string name="my_pets_fragment_title">My pets</string>
+    <string name="titulo_de_cabecera">Título de cabecera</string>
+    <string name="logo_de_aplicacion">Logo de la aplicación</string>
+    <string name="subtitulo_de_cabecera">Subtítulo de cabecera</string>
 </resources>

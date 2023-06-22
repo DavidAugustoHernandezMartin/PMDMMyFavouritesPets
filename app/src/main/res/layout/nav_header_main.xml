@@ -18,19 +18,19 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:src="@mipmap/ic_launcher"
-        android:contentDescription="Logo de la aplicación" />
+        android:contentDescription="@string/logo_de_aplicacion" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:text="Título de cabecera"
+        android:text="@string/titulo_de_cabecera"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Subtítulo de cabecera" />
+        android:text="@string/subtitulo_de_cabecera" />
 
 </LinearLayout>
