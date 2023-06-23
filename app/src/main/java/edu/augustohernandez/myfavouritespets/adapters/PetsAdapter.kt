@@ -11,15 +11,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import edu.augustohernandez.myfavouritespets.R
 import edu.augustohernandez.myfavouritespets.model.Pet
-import edu.augustohernandez.myfavouritespets.model.PetsList
 
-class PetsAdapter : RecyclerView.Adapter<PetsAdapter.PetsViewHolder>(){
-    private val petsList = PetsList.petsList
+class PetsAdapter (private val petsList: List<Pet>): RecyclerView.Adapter<PetsAdapter.PetsViewHolder>(){
     class PetsViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         val petImage = view.findViewById<ImageView>(R.id.pet_image)
-        val petName = view.findViewById<TextView>(R.id.pet_name)
-        val petScientificName = view.findViewById<TextView>(R.id.pet_scientific_name)
-        val checkBox = view.findViewById<CheckBox>(R.id.favorite_checkbox)
+        val petName: TextView = view.findViewById(R.id.pet_name)
+        val petScientificName: TextView = view.findViewById(R.id.pet_scientific_name)
+        val checkBox: CheckBox = view.findViewById(R.id.favorite_checkbox)
         val editButton = view.findViewById<Button>(R.id.edit_button)
         val deleteButton = view.findViewById<Button>(R.id.delete_button)
         val mapsButton = view.findViewById<ImageButton>(R.id.maps_button)
@@ -37,5 +35,8 @@ class PetsAdapter : RecyclerView.Adapter<PetsAdapter.PetsViewHolder>(){
 
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
         val pet:Pet = petsList[position]
+        holder.checkBox.isChecked = pet.isFavorite
+        holder.petName.text = pet.name
+        holder.petScientificName.text = pet.scientificName
     }
 }

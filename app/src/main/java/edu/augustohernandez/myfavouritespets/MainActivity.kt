@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         //Se configura el AppBar para el DrawerLayout
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_list_fragment, R.id.nav_my_pets_fragment), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.fragment_list, R.id.fragment_mypets), drawerLayout)
 
         // Set up the ActionBar with the NavigationDrawer
         setSupportActionBar(findViewById(R.id.toolbar))
