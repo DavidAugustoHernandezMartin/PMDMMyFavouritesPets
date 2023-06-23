@@ -5,4 +5,11 @@
     <string name="titulo_de_cabecera">Título de cabecera</string>
     <string name="logo_de_aplicacion">Logo de la aplicación</string>
     <string name="subtitulo_de_cabecera">Subtítulo de cabecera</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_delete">Delete</string>
+    <string name="checkbox_favourite">Favorite</string>
+    <string name="scientific_name">Scientific Name</string>
+    <string name="pet_name">Pet Name</string>
+    <string name="go_to_google_maps">Go to Google Maps</string>
+    <string name="pets_tab_layout">Favourite pets and pet adding formulary</string>
 </resources>

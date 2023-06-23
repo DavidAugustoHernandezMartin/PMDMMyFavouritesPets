@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_graph"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph.xml">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/fragment_list">
+    <fragment
+        android:id="@id/fragment_list"
+        android:name="edu.augustohernandez.myfavouritespets.ListFragment"
+        android:label="Favourite pets"
+        tools:layout="@layout/fragment_list"/>
+    <fragment
+        android:id="@id/fragment_mypets"
+        android:name="edu.augustohernandez.myfavouritespets.MyPetsFragment"
+        android:label="Add a new pet"
+        tools:layout="@layout/fragment_mypets"/>
 </navigation>

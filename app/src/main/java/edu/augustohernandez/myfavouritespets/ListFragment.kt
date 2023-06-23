@@ -5,23 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import edu.augustohernandez.myfavouritespets.adapters.PetsAdapter
+import edu.augustohernandez.myfavouritespets.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var binding: FragmentListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_list, container, false)
+        val fragmentBinding = FragmentListBinding.inflate(inflater, container, false)
+        binding = fragmentBinding
+        return fragmentBinding.root
+    }
 
-        recyclerView = view.findViewById(R.id.recyclerview)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = PetsAdapter()
-
-        return view
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.recyclerview.adapter = PetsAdapter()
     }
 }
