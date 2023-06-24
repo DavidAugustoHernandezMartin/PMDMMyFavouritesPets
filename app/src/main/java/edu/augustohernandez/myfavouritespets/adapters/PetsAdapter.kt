@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.augustohernandez.myfavouritespets.R
 import edu.augustohernandez.myfavouritespets.model.Pet
 
-class PetsAdapter (private val petsList: List<Pet>): RecyclerView.Adapter<PetsAdapter.PetsViewHolder>(){
+class PetsAdapter (private val petsList: MutableList<Pet>): RecyclerView.Adapter<PetsAdapter.PetsViewHolder>(){
     class PetsViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         val petImage = view.findViewById<ImageView>(R.id.pet_image)
         val petName: TextView = view.findViewById(R.id.pet_name)
